@@ -1,0 +1,11 @@
+# Virtual envs
+.venv
+
+# Editor
+.vscode
+
+# Jupyter
+.ipynb_checkpoints
+
+# Build/Dist
+/build

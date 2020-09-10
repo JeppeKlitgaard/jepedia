@@ -1,0 +1,40 @@
+site_name: Jepedia
+
+theme: material
+
+nav:
+- index.md
+
+- Physics:
+    - physics/index.md
+    - physics/rotational_mechanics.ipynb
+
+- Mathematics:
+    - mathematics/index.md
+    - mathematics/complex_numbers.ipynb
+
+
+plugins:
+- search
+- mknotebooks
+# - mkdocs-jupyter
+
+
+markdown_extensions:
+- admonition
+- pymdownx.details
+- pymdownx.arithmatex
+- pymdownx.superfences
+- codehilite:
+    guess_lang: false
+    linenums: false
+    noclasses: false
+    use_pygments: true
+- pymdownx.emoji:
+    emoji_index: !!python/name:materialx.emoji.twemoji
+    emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra_javascript:
+    - extras/javascript/config.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
