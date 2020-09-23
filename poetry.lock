@@ -47,6 +47,14 @@ wrapt = ">=1.11,<2.0"
 
 [[package]]
 category = "main"
+description = "Async generators and context managers for Python 3.5+"
+name = "async-generator"
+optional = false
+python-versions = ">=3.5"
+version = "1.10"
+
+[[package]]
+category = "main"
 description = "Classes Without Boilerplate"
 name = "attrs"
 optional = false
@@ -279,7 +287,7 @@ description = "A Python utility / library to sort Python imports."
 name = "isort"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "5.5.1"
+version = "5.5.2"
 
 [package.extras]
 colors = ["colorama (>=0.4.3,<0.5.0)"]
@@ -420,6 +428,17 @@ test = ["requests-unixsocket", "pytest", "pytest-asyncio", "jupyterlab (>=2.0,<3
 
 [[package]]
 category = "main"
+description = "Pygments theme using JupyterLab CSS variables"
+name = "jupyterlab-pygments"
+optional = false
+python-versions = "*"
+version = "0.1.1"
+
+[package.dependencies]
+pygments = ">=2.4.1,<3"
+
+[[package]]
+category = "main"
 description = "JupyterLab Server"
 name = "jupyterlab-server"
 optional = false
@@ -536,23 +555,6 @@ version = "0.5.8"
 
 [[package]]
 category = "main"
-description = ""
-name = "mkdocs-jupyter"
-optional = false
-python-versions = ">=3.6"
-version = "0.13.0"
-
-[package.dependencies]
-ipython = "*"
-mkdocs = ">=1.1.0"
-nbconvert = "*"
-
-[package.extras]
-dev = ["setuptools", "setuptools-scm", "pylint", "flake8", "black", "isort", "twine", "wheel", "pytest", "pytest-cov", "notebook", "nbconvert", "mkdocs", "mkdocs-material", "mkdocs-minify-plugin", "pygments", "pymdown-extensions"]
-test = ["pytest"]
-
-[[package]]
-category = "main"
 description = "A Material Design theme for MkDocs"
 name = "mkdocs-material"
 optional = false
@@ -583,12 +585,13 @@ description = "Plugin for mkdocs to generate markdown documents from jupyter not
 name = "mknotebooks"
 optional = false
 python-versions = "*"
-version = "0.4.1.post0.dev7"
+version = "0.6.0.post0.dev4"
 
 [package.dependencies]
+gitpython = "*"
 jupyter-client = "*"
 mkdocs = ">=1.1"
-nbconvert = ">=5.6.1"
+nbconvert = ">=6.0.0"
 
 [[package]]
 category = "dev"
@@ -600,11 +603,31 @@ version = "0.4.3"
 
 [[package]]
 category = "main"
+description = "A client library for executing notebooks. Formally nbconvert's ExecutePreprocessor."
+name = "nbclient"
+optional = false
+python-versions = ">=3.6"
+version = "0.5.0"
+
+[package.dependencies]
+async-generator = "*"
+jupyter-client = ">=6.1.5"
+nbformat = ">=5.0"
+nest-asyncio = "*"
+traitlets = ">=4.2"
+
+[package.extras]
+dev = ["codecov", "coverage", "ipython", "ipykernel", "ipywidgets", "pytest (>=4.1)", "pytest-cov (>=2.6.1)", "check-manifest", "flake8", "mypy", "tox", "bumpversion", "xmltodict", "pip (>=18.1)", "wheel (>=0.31.0)", "setuptools (>=38.6.0)", "twine (>=1.11.0)", "black"]
+sphinx = ["Sphinx (>=1.7)", "sphinx-book-theme", "mock", "moto", "myst-parser"]
+test = ["codecov", "coverage", "ipython", "ipykernel", "ipywidgets", "pytest (>=4.1)", "pytest-cov (>=2.6.1)", "check-manifest", "flake8", "mypy", "tox", "bumpversion", "xmltodict", "pip (>=18.1)", "wheel (>=0.31.0)", "setuptools (>=38.6.0)", "twine (>=1.11.0)", "black"]
+
+[[package]]
+category = "main"
 description = "Converting Jupyter Notebooks"
 name = "nbconvert"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "5.6.1"
+python-versions = ">=3.6"
+version = "6.0.1"
 
 [package.dependencies]
 bleach = "*"
@@ -612,19 +635,21 @@ defusedxml = "*"
 entrypoints = ">=0.2.2"
 jinja2 = ">=2.4"
 jupyter-core = "*"
+jupyterlab-pygments = "*"
 mistune = ">=0.8.1,<2"
+nbclient = ">=0.5.0,<0.6.0"
 nbformat = ">=4.4"
 pandocfilters = ">=1.4.1"
-pygments = "*"
+pygments = ">=2.4.1"
 testpath = "*"
 traitlets = ">=4.2"
 
 [package.extras]
-all = ["pytest", "pytest-cov", "ipykernel", "jupyter-client (>=5.3.1)", "ipywidgets (>=7)", "pebble", "tornado (>=4.0)", "sphinx (>=1.5.1)", "sphinx-rtd-theme", "nbsphinx (>=0.2.12)", "sphinxcontrib-github-alt", "ipython", "mock"]
-docs = ["sphinx (>=1.5.1)", "sphinx-rtd-theme", "nbsphinx (>=0.2.12)", "sphinxcontrib-github-alt", "ipython", "jupyter-client (>=5.3.1)"]
-execute = ["jupyter-client (>=5.3.1)"]
+all = ["pytest", "pytest-cov", "pytest-dependency", "ipykernel", "ipywidgets (>=7)", "pyppeteer (0.2.2)", "tornado (>=4.0)", "sphinx (>=1.5.1)", "sphinx-rtd-theme", "nbsphinx (>=0.2.12)", "ipython"]
+docs = ["sphinx (>=1.5.1)", "sphinx-rtd-theme", "nbsphinx (>=0.2.12)", "ipython"]
 serve = ["tornado (>=4.0)"]
-test = ["pytest", "pytest-cov", "ipykernel", "jupyter-client (>=5.3.1)", "ipywidgets (>=7)", "pebble", "mock"]
+test = ["pytest", "pytest-cov", "pytest-dependency", "ipykernel", "ipywidgets (>=7)", "pyppeteer (0.2.2)"]
+webpdf = ["pyppeteer (0.2.2)"]
 
 [[package]]
 category = "main"
@@ -665,6 +690,14 @@ traitlets = ">=4.1"
 
 [package.extras]
 test = ["pytest", "pytest-cov", "testpath"]
+
+[[package]]
+category = "main"
+description = "Patch asyncio to allow nested event loops"
+name = "nest-asyncio"
+optional = false
+python-versions = ">=3.5"
+version = "1.4.0"
 
 [[package]]
 category = "main"
@@ -723,7 +756,7 @@ description = "NumPy is the fundamental package for array computing with Python.
 name = "numpy"
 optional = false
 python-versions = ">=3.6"
-version = "1.19.1"
+version = "1.19.2"
 
 [[package]]
 category = "main"
@@ -1110,7 +1143,7 @@ python-versions = "*"
 version = "1.12.1"
 
 [metadata]
-content-hash = "b8a0e78a68721b0eb852f95aa545fddd01c88b68ae7f1d7b8510120d4a793ea0"
+content-hash = "41df1e6a34104d7528ad69193757b840190b21955d233ff6ba9e4558dcc91692"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -1144,6 +1177,10 @@ argon2-cffi = [
 astroid = [
     {file = "astroid-2.4.2-py3-none-any.whl", hash = "sha256:bc58d83eb610252fd8de6363e39d4f1d0619c894b0ed24603b881c02e64c7386"},
     {file = "astroid-2.4.2.tar.gz", hash = "sha256:2f4078c2a41bf377eea06d71c9d2ba4eb8f6b1af2135bec27bbbb7d8f12bb703"},
+]
+async-generator = [
+    {file = "async_generator-1.10-py3-none-any.whl", hash = "sha256:01c7bf666359b4967d2cda0000cc2e4af16a0ae098cbffcb8472fb9e8ad6585b"},
+    {file = "async_generator-1.10.tar.gz", hash = "sha256:6ebb3d106c12920aaae42ccb6f787ef5eefdcdd166ea3d628fa8476abe712144"},
 ]
 attrs = [
     {file = "attrs-20.2.0-py2.py3-none-any.whl", hash = "sha256:fce7fc47dfc976152e82d53ff92fa0407700c21acd20886a13777a0d20e655dc"},
@@ -1252,8 +1289,8 @@ ipython-genutils = [
     {file = "ipython_genutils-0.2.0.tar.gz", hash = "sha256:eb2e116e75ecef9d4d228fdc66af54269afa26ab4463042e33785b887c628ba8"},
 ]
 isort = [
-    {file = "isort-5.5.1-py3-none-any.whl", hash = "sha256:a200d47b7ee8b7f7d0a9646650160c4a51b6a91a9413fd31b1da2c4de789f5d3"},
-    {file = "isort-5.5.1.tar.gz", hash = "sha256:92533892058de0306e51c88f22ece002a209dc8e80288aa3cec6d443060d584f"},
+    {file = "isort-5.5.2-py3-none-any.whl", hash = "sha256:ba91218eee31f1e300ecc079ef0c524cea3fc41bfbb979cbdf5fd3a889e3cfed"},
+    {file = "isort-5.5.2.tar.gz", hash = "sha256:171c5f365791073426b5ed3a156c2081a47f88c329161fd28228ff2da4c97ddb"},
 ]
 jedi = [
     {file = "jedi-0.17.2-py2.py3-none-any.whl", hash = "sha256:98cc583fa0f2f8304968199b01b6b4b94f469a1f4a74c1560506ca2a211378b5"},
@@ -1290,6 +1327,10 @@ jupyterlab = [
 jupyterlab-git = [
     {file = "jupyterlab_git-0.21.1-py3-none-any.whl", hash = "sha256:954e5f4d6590ceb7054d63beef5e538be0a75e2bb1fd029c7085bc5a643dfcc5"},
     {file = "jupyterlab_git-0.21.1.tar.gz", hash = "sha256:d4571325d69786951424df95905acf1b24e7d39e0ca6570c37d04f02652cff6e"},
+]
+jupyterlab-pygments = [
+    {file = "jupyterlab_pygments-0.1.1-py2.py3-none-any.whl", hash = "sha256:c9535e5999f29bff90bd0fa423717dcaf247b71fad505d66b17d3217e9021fc5"},
+    {file = "jupyterlab_pygments-0.1.1.tar.gz", hash = "sha256:19a0ccde7daddec638363cd3d60b63a4f6544c9181d65253317b2fb492a797b9"},
 ]
 jupyterlab-server = [
     {file = "jupyterlab_server-1.2.0-py3-none-any.whl", hash = "sha256:55d256077bf13e5bc9e8fbd5aac51bef82f6315111cec6b712b9a5ededbba924"},
@@ -1376,9 +1417,6 @@ mkdocs = [
     {file = "mkdocs-1.1.2-py3-none-any.whl", hash = "sha256:096f52ff52c02c7e90332d2e53da862fde5c062086e1b5356a6e392d5d60f5e9"},
     {file = "mkdocs-1.1.2.tar.gz", hash = "sha256:f0b61e5402b99d7789efa032c7a74c90a20220a9c81749da06dbfbcbd52ffb39"},
 ]
-mkdocs-jupyter = [
-    {file = "mkdocs-jupyter-0.13.0.tar.gz", hash = "sha256:304d0a511159e1414663a1ef1f3a751860251e65a021c305351474ada7520475"},
-]
 mkdocs-material = [
     {file = "mkdocs-material-5.5.12.tar.gz", hash = "sha256:d956fba4b3e27b40490aa457678083e0c26fe4ea1b307d8322c3df3412a0b485"},
     {file = "mkdocs_material-5.5.12-py2.py3-none-any.whl", hash = "sha256:9b2225af305668f422a01d4b41ddb7ebb938b1c43a0dde7aae3b00475e6c9ae3"},
@@ -1388,15 +1426,19 @@ mkdocs-material-extensions = [
     {file = "mkdocs_material_extensions-1.0-py3-none-any.whl", hash = "sha256:09569c3694b5acc1e8334c9730e52b4bcde65fc9d613cc20e49af131ef1a9ca0"},
 ]
 mknotebooks = [
-    {file = "mknotebooks-0.4.1.post0.dev7-py3-none-any.whl", hash = "sha256:7fa1bc8f5f26d7790692bde3142ccd5556196c235b26716a6dcef57a4c899fc1"},
+    {file = "mknotebooks-0.6.0.post0.dev4-py3-none-any.whl", hash = "sha256:c2b9cc5cee1776219c942f7d6c2c8e20ea94408e542851d4626d25d0ff8eb022"},
 ]
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
+nbclient = [
+    {file = "nbclient-0.5.0-py3-none-any.whl", hash = "sha256:8a6e27ff581cee50895f44c41936ce02369674e85e2ad58643d8d4a6c36771b0"},
+    {file = "nbclient-0.5.0.tar.gz", hash = "sha256:8ad52d27ba144fca1402db014857e53c5a864a2f407be66ca9d74c3a56d6591d"},
+]
 nbconvert = [
-    {file = "nbconvert-5.6.1-py2.py3-none-any.whl", hash = "sha256:f0d6ec03875f96df45aa13e21fd9b8450c42d7e1830418cccc008c0df725fcee"},
-    {file = "nbconvert-5.6.1.tar.gz", hash = "sha256:21fb48e700b43e82ba0e3142421a659d7739b65568cc832a13976a77be16b523"},
+    {file = "nbconvert-6.0.1-py3-none-any.whl", hash = "sha256:970122eaf3a3ddcfe4e03514b219df4be4af09e70c748faf6ba96f51a25fd09b"},
+    {file = "nbconvert-6.0.1.tar.gz", hash = "sha256:db94117fbac29153834447e31b30cda337d4450e46e0bdb1a36eafbbf4435156"},
 ]
 nbdime = [
     {file = "nbdime-2.0.0-py2.py3-none-any.whl", hash = "sha256:b57cedd62c5ee5521e999786bb49f8cbd8612438fac3fea8e16e8d6c90868bc4"},
@@ -1406,6 +1448,10 @@ nbformat = [
     {file = "nbformat-5.0.7-py3-none-any.whl", hash = "sha256:ea55c9b817855e2dfcd3f66d74857342612a60b1f09653440f4a5845e6e3523f"},
     {file = "nbformat-5.0.7.tar.gz", hash = "sha256:54d4d6354835a936bad7e8182dcd003ca3dc0cedfee5a306090e04854343b340"},
 ]
+nest-asyncio = [
+    {file = "nest_asyncio-1.4.0-py3-none-any.whl", hash = "sha256:ea51120725212ef02e5870dd77fc67ba7343fc945e3b9a7ff93384436e043b6a"},
+    {file = "nest_asyncio-1.4.0.tar.gz", hash = "sha256:5773054bbc14579b000236f85bc01ecced7ffd045ec8ca4a9809371ec65a59c8"},
+]
 nltk = [
     {file = "nltk-3.5.zip", hash = "sha256:845365449cd8c5f9731f7cb9f8bd6fd0767553b9d53af9eb1b3abf7700936b35"},
 ]
@@ -1414,32 +1460,32 @@ notebook = [
     {file = "notebook-6.1.4.tar.gz", hash = "sha256:687d01f963ea20360c0b904ee7a37c3d8cda553858c8d6e33fd0afd13e89de32"},
 ]
 numpy = [
-    {file = "numpy-1.19.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:b1cca51512299841bf69add3b75361779962f9cee7d9ee3bb446d5982e925b69"},
-    {file = "numpy-1.19.1-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:c9591886fc9cbe5532d5df85cb8e0cc3b44ba8ce4367bd4cf1b93dc19713da72"},
-    {file = "numpy-1.19.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:cf1347450c0b7644ea142712619533553f02ef23f92f781312f6a3553d031fc7"},
-    {file = "numpy-1.19.1-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:ed8a311493cf5480a2ebc597d1e177231984c818a86875126cfd004241a73c3e"},
-    {file = "numpy-1.19.1-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:3673c8b2b29077f1b7b3a848794f8e11f401ba0b71c49fbd26fb40b71788b132"},
-    {file = "numpy-1.19.1-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:56ef7f56470c24bb67fb43dae442e946a6ce172f97c69f8d067ff8550cf782ff"},
-    {file = "numpy-1.19.1-cp36-cp36m-win32.whl", hash = "sha256:aaf42a04b472d12515debc621c31cf16c215e332242e7a9f56403d814c744624"},
-    {file = "numpy-1.19.1-cp36-cp36m-win_amd64.whl", hash = "sha256:082f8d4dd69b6b688f64f509b91d482362124986d98dc7dc5f5e9f9b9c3bb983"},
-    {file = "numpy-1.19.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:e4f6d3c53911a9d103d8ec9518190e52a8b945bab021745af4939cfc7c0d4a9e"},
-    {file = "numpy-1.19.1-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:5b6885c12784a27e957294b60f97e8b5b4174c7504665333c5e94fbf41ae5d6a"},
-    {file = "numpy-1.19.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:1bc0145999e8cb8aed9d4e65dd8b139adf1919e521177f198529687dbf613065"},
-    {file = "numpy-1.19.1-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:5a936fd51049541d86ccdeef2833cc89a18e4d3808fe58a8abeb802665c5af93"},
-    {file = "numpy-1.19.1-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:ef71a1d4fd4858596ae80ad1ec76404ad29701f8ca7cdcebc50300178db14dfc"},
-    {file = "numpy-1.19.1-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:b9792b0ac0130b277536ab8944e7b754c69560dac0415dd4b2dbd16b902c8954"},
-    {file = "numpy-1.19.1-cp37-cp37m-win32.whl", hash = "sha256:b12e639378c741add21fbffd16ba5ad25c0a1a17cf2b6fe4288feeb65144f35b"},
-    {file = "numpy-1.19.1-cp37-cp37m-win_amd64.whl", hash = "sha256:8343bf67c72e09cfabfab55ad4a43ce3f6bf6e6ced7acf70f45ded9ebb425055"},
-    {file = "numpy-1.19.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:e45f8e981a0ab47103181773cc0a54e650b2aef8c7b6cd07405d0fa8d869444a"},
-    {file = "numpy-1.19.1-cp38-cp38-manylinux1_i686.whl", hash = "sha256:667c07063940e934287993366ad5f56766bc009017b4a0fe91dbd07960d0aba7"},
-    {file = "numpy-1.19.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:480fdd4dbda4dd6b638d3863da3be82873bba6d32d1fc12ea1b8486ac7b8d129"},
-    {file = "numpy-1.19.1-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:935c27ae2760c21cd7354402546f6be21d3d0c806fffe967f745d5f2de5005a7"},
-    {file = "numpy-1.19.1-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:309cbcfaa103fc9a33ec16d2d62569d541b79f828c382556ff072442226d1968"},
-    {file = "numpy-1.19.1-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:7ed448ff4eaffeb01094959b19cbaf998ecdee9ef9932381420d514e446601cd"},
-    {file = "numpy-1.19.1-cp38-cp38-win32.whl", hash = "sha256:de8b4a9b56255797cbddb93281ed92acbc510fb7b15df3f01bd28f46ebc4edae"},
-    {file = "numpy-1.19.1-cp38-cp38-win_amd64.whl", hash = "sha256:92feb989b47f83ebef246adabc7ff3b9a59ac30601c3f6819f8913458610bdcc"},
-    {file = "numpy-1.19.1-pp36-pypy36_pp73-manylinux2010_x86_64.whl", hash = "sha256:e1b1dc0372f530f26a03578ac75d5e51b3868b9b76cd2facba4c9ee0eb252ab1"},
-    {file = "numpy-1.19.1.zip", hash = "sha256:b8456987b637232602ceb4d663cb34106f7eb780e247d51a260b84760fd8f491"},
+    {file = "numpy-1.19.2-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:b594f76771bc7fc8a044c5ba303427ee67c17a09b36e1fa32bde82f5c419d17a"},
+    {file = "numpy-1.19.2-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:e6ddbdc5113628f15de7e4911c02aed74a4ccff531842c583e5032f6e5a179bd"},
+    {file = "numpy-1.19.2-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:3733640466733441295b0d6d3dcbf8e1ffa7e897d4d82903169529fd3386919a"},
+    {file = "numpy-1.19.2-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:4339741994c775396e1a274dba3609c69ab0f16056c1077f18979bec2a2c2e6e"},
+    {file = "numpy-1.19.2-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:7c6646314291d8f5ea900a7ea9c4261f834b5b62159ba2abe3836f4fa6705526"},
+    {file = "numpy-1.19.2-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:7118f0a9f2f617f921ec7d278d981244ba83c85eea197be7c5a4f84af80a9c3c"},
+    {file = "numpy-1.19.2-cp36-cp36m-win32.whl", hash = "sha256:9a3001248b9231ed73894c773142658bab914645261275f675d86c290c37f66d"},
+    {file = "numpy-1.19.2-cp36-cp36m-win_amd64.whl", hash = "sha256:967c92435f0b3ba37a4257c48b8715b76741410467e2bdb1097e8391fccfae15"},
+    {file = "numpy-1.19.2-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:d526fa58ae4aead839161535d59ea9565863bb0b0bdb3cc63214613fb16aced4"},
+    {file = "numpy-1.19.2-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:eb25c381d168daf351147713f49c626030dcff7a393d5caa62515d415a6071d8"},
+    {file = "numpy-1.19.2-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:62139af94728d22350a571b7c82795b9d59be77fc162414ada6c8b6a10ef5d02"},
+    {file = "numpy-1.19.2-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:0c66da1d202c52051625e55a249da35b31f65a81cb56e4c69af0dfb8fb0125bf"},
+    {file = "numpy-1.19.2-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:2117536e968abb7357d34d754e3733b0d7113d4c9f1d921f21a3d96dec5ff716"},
+    {file = "numpy-1.19.2-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:54045b198aebf41bf6bf4088012777c1d11703bf74461d70cd350c0af2182e45"},
+    {file = "numpy-1.19.2-cp37-cp37m-win32.whl", hash = "sha256:aba1d5daf1144b956bc87ffb87966791f5e9f3e1f6fab3d7f581db1f5b598f7a"},
+    {file = "numpy-1.19.2-cp37-cp37m-win_amd64.whl", hash = "sha256:addaa551b298052c16885fc70408d3848d4e2e7352de4e7a1e13e691abc734c1"},
+    {file = "numpy-1.19.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:58d66a6b3b55178a1f8a5fe98df26ace76260a70de694d99577ddeab7eaa9a9d"},
+    {file = "numpy-1.19.2-cp38-cp38-manylinux1_i686.whl", hash = "sha256:59f3d687faea7a4f7f93bd9665e5b102f32f3fa28514f15b126f099b7997203d"},
+    {file = "numpy-1.19.2-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:cebd4f4e64cfe87f2039e4725781f6326a61f095bc77b3716502bed812b385a9"},
+    {file = "numpy-1.19.2-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:c35a01777f81e7333bcf276b605f39c872e28295441c265cd0c860f4b40148c1"},
+    {file = "numpy-1.19.2-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:d7ac33585e1f09e7345aa902c281bd777fdb792432d27fca857f39b70e5dd31c"},
+    {file = "numpy-1.19.2-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:04c7d4ebc5ff93d9822075ddb1751ff392a4375e5885299445fcebf877f179d5"},
+    {file = "numpy-1.19.2-cp38-cp38-win32.whl", hash = "sha256:51ee93e1fac3fe08ef54ff1c7f329db64d8a9c5557e6c8e908be9497ac76374b"},
+    {file = "numpy-1.19.2-cp38-cp38-win_amd64.whl", hash = "sha256:1669ec8e42f169ff715a904c9b2105b6640f3f2a4c4c2cb4920ae8b2785dac65"},
+    {file = "numpy-1.19.2-pp36-pypy36_pp73-manylinux2010_x86_64.whl", hash = "sha256:0bfd85053d1e9f60234f28f63d4a5147ada7f432943c113a11afcf3e65d9d4c8"},
+    {file = "numpy-1.19.2.zip", hash = "sha256:0d310730e1e793527065ad7dde736197b705d0e4c9999775f212b03c44a8484c"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},

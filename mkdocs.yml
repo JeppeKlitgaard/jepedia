@@ -11,17 +11,28 @@ nav:
 
 - Mathematics:
     - mathematics/index.md
+    - mathematics/functions.ipynb
     - mathematics/complex_numbers.ipynb
+    - mathematics/calculus.ipynb
 
+- Books:
+    - Tiny Habits:
+        - books/tiny_habits/index.md
+        - books/tiny_habits/chapter1___the_elements_of_behaviour.md
+
+- Personal:
+    - personal/index.md
+    - personal/daily_routine.md
+    - personal/guiding_principles.md
 
 plugins:
 - search
 - mknotebooks
-# - mkdocs-jupyter
 
 
 markdown_extensions:
 - admonition
+- attr_list
 - pymdownx.details
 - pymdownx.arithmatex
 - pymdownx.superfences

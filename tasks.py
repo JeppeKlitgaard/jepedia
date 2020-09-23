@@ -2,10 +2,24 @@
 Contains task automations and syntactic sugar for Jepedia.
 """
 
+import os
+from pathlib import Path
+
 from invoke import task
 
-
 PTY: bool = True
+
+ROOT_DIR = os.path.dirname(__file__)
+ROOT_PATH = Path(ROOT_DIR)
+
+JUPYTERLAB_EXTENSIONS = [
+    "jupyterlab-drawio",
+    "nbgather",
+    "@krassowski/jupyterlab-lsp",
+    "@jupyterlab/git",
+    "@jupyterlab/toc",
+    "@aquirdturtle/collapsible_headings",
+]
 
 
 @task(name="list")
@@ -24,6 +38,16 @@ def help_(c, command):
     """
 
     c.run(f"inv --help {command}", pty=PTY)
+
+
+@task()
+def install_jupyterlabs_ext(c):
+    """Installs the JupyterLab Extensions."""
+
+    with c.cd(ROOT_DIR):
+        c.run(
+            f"jupyter labextension install {' '.join(JUPYTERLAB_EXTENSIONS)} ", pty=PTY
+        )
 
 
 @task
@@ -51,7 +75,8 @@ def docs(c):
     Serves to mkdocs documentation site.
     """
 
-    c.run("mkdocs serve", pty=PTY)
+    with c.cd(ROOT_DIR):
+        c.run("mkdocs serve", pty=PTY)
 
 
 @task
@@ -60,4 +85,5 @@ def lab(c):
     Runs the JupyterLab server.
     """
 
-    c.run("jupyter lab", pty=PTY)
+    with c.cd(ROOT_DIR):
+        c.run("jupyter lab", pty=PTY)
