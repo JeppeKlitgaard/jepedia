@@ -14,11 +14,13 @@ ROOT_PATH = Path(ROOT_DIR)
 
 JUPYTERLAB_EXTENSIONS = [
     "jupyterlab-drawio",
-    "nbgather",
-    "@krassowski/jupyterlab-lsp",
+    # "nbgather",
+    # "@krassowski/jupyterlab-lsp",
     "@jupyterlab/git",
     "@jupyterlab/toc",
+    # "@jupyterlab/mathjax3-extension",
     "@aquirdturtle/collapsible_headings",
+    "./jupyterlab-jepedia"
 ]
 
 

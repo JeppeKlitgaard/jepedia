@@ -15,6 +15,19 @@ Reads as:
 
 ![Fogg Behaviour Model](/books/tiny_habits/assets/fogg_behaviour_model.webp)
 
+Above action line: Success
+
+Below action line: Failure
+
+!!! Note
+    All 3 factors must be present at the same point in time
+
+Order of ease:
+
+* Prompt
+* Ability
+* Motivation
+
 ## Disrupting unwanted behaviour
 
 Prompt is the easiest to remove.

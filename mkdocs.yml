@@ -8,6 +8,7 @@ nav:
 - Physics:
     - physics/index.md
     - physics/rotational_mechanics.ipynb
+    - physics/gravitational_and_electromagnetic_fields.ipynb
 
 - Mathematics:
     - mathematics/index.md
@@ -19,11 +20,14 @@ nav:
     - Tiny Habits:
         - books/tiny_habits/index.md
         - books/tiny_habits/chapter1___the_elements_of_behaviour.md
+        - books/tiny_habits/chapter2___motivation.md
 
 - Personal:
     - personal/index.md
     - personal/daily_routine.md
+    - personal/habits.md
     - personal/guiding_principles.md
+    - personal/cambridge_learning.md
 
 plugins:
 - search
@@ -46,6 +50,6 @@ markdown_extensions:
     emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_javascript:
-    - extras/javascript/config.js
+    - extras/javascript/mathjax_config.js
     - https://polyfill.io/v3/polyfill.min.js?features=es6
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

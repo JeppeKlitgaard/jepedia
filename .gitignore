@@ -10,3 +10,7 @@
 # Build/Dist
 /build
 /site
+
+# jupyterlab-jepedia
+/jupyterlab-jepedia/node_modules
+/jupyterlab-jepedia/lib
